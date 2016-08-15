@@ -5,6 +5,7 @@
   template: src=lxd-bridge.j2 dest=/etc/default/lxd-bridge mode=0644 backup=yes
   notify:
     - restart lxd-bridge
+    - reconfigure lxd-bridge
   register: lxdconf
 
 - name: force restart of lxd to have working network

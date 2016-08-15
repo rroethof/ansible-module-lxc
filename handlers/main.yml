@@ -6,3 +6,6 @@
 
 - name: restart lxd-bridge
   service: name=lxd-bridge state=restarted
+
+- name: reconfigure lxd-bridge
+  raw: dpkg-reconfigure -f noninteractive -p medium lxd
