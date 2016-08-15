@@ -6,7 +6,7 @@ Ansible module to install and configure LXD on your system and create,modify,del
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Ubuntu 16.04 with Ansible 2.2.0 or higher is required for this role.
 
 Role Variables
 --------------
@@ -27,7 +27,9 @@ lxd_bridgeconf_ipv4_dhcp_max: 252
 lxd_bridgeconf_ipv4_nat: true
 lxd_bridgeconf_ipv6_nat: false
 lxd_bridgeconf_ipv6_proxy: false
+```
 
+```
 lxd_preloadimages:
     - { i: 'images:/ubuntu/precise/amd64', alias: 'ubuntu-12.04' }
     - { i: 'images:/ubuntu/trusty/amd64',  alias: 'ubuntu-14.04' }
@@ -49,7 +51,9 @@ lxd_preloadimages:
     - { i: 'images:/opensuse/13.2/amd64',  alias: 'opensuse-13.2' }
     - { i: 'images:/oracle/6/amd64',       alias: 'oracle-6' }
     - { i: 'images:/oracle/7/amd64',       alias: 'oracle-7' }
+```
 
+```
 lxd_preconfigure: 
   - { guest: 'demo-ubuntu-12', template: 'ubuntu-12.04' }
   - { guest: 'demo-ubuntu-14', template: 'ubuntu-14.04' }
@@ -59,7 +63,7 @@ lxd_preconfigure:
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+Ubuntu 16.04 with Ansible 2.2.0 or higher is required for this role.
 
 Example Playbook
 ----------------
@@ -73,9 +77,9 @@ Including an example of how to use your role (for instance, with variables passe
 License
 -------
 
-BSD
+GPLv3
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Ronny Roethof <ronny@roethof.net>
