@@ -1,0 +1,8 @@
+---
+# handlers file for ansible-module-lxd
+
+- name: restart lxd
+  service: name=lxd state=restarted
+
+- name: restart lxd-bridge
+  service: name=lxd-bridge state=restarted

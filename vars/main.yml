@@ -1,0 +1,7 @@
+---
+# vars file for ansible-module-lxd
+
+lxd_ubuntu_packages:
+    - lxd
+    - python-pip
+    - python-lxc

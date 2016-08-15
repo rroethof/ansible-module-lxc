@@ -1,0 +1,37 @@
+---
+# tasks file for ansible-module-lxd
+
+- name: configure lxd bridge
+  template: src=lxd-bridge.j2 dest=/etc/default/lxd-bridge mode=0644 backup=yes
+  notify:
+    - restart lxd-bridge
+  register: lxdconf
+
+- name: force restart of lxd to have working network
+  service: name=lxd state=restarted
+  when: lxdconf.changed and (ansible_virtualization_type is not defined or ansible_virtualization_type != "lxc")
+
+- name: list existing lxc images
+  command: "lxc image list"
+  changed_when: false
+  register: imagelist
+
+- name: pre copy lxc images
+  include: "lxc-image-copy.yml current={{ imagelist }} image={{ item.i }} alias={{ item.alias }}"
+  with_items: "{{ lxd_preloadimages }}"
+
+- name: list existing lxc images
+  command: "lxc image list"
+  changed_when: false
+  register: imagelist2
+
+- name: list existing lxc instances
+  command: "lxc list"
+  changed_when: false
+  register: lxclist
+
+- name: preconfigure lxc containers
+  include: "lxc-createcontainers.yml guest={{ outer_item.guest }} template={{ outer_item.template }}"
+  with_items: "{{ lxd_preconfigure }}"
+  loop_control:
+    loop_var: outer_item

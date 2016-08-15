@@ -1,0 +1,17 @@
+---
+# tasks file for ansible-module-lxd
+
+  - name: "create a started container: {{ guest }}"
+    lxd_container:
+      name: "{{ guest }}"
+      state: started
+      source:
+        type: image
+        protocol: lxd
+        alias: "{{ template }}"
+      profiles: ["default"]
+      wait_for_ipv4_addresses: true
+      timeout: 600
+    with_items:
+      - "{{ template }}"
+      - "{{ guest }}"
