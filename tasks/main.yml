@@ -12,6 +12,14 @@
   service: name=lxd state=restarted
   when: lxdconf.changed and (ansible_virtualization_type is not defined or ansible_virtualization_type != "lxc")
 
+- name: allow remote operations
+  command: "{{ lxd_lxc_path }} config set core.https_address {{ lxd_https_listen_address }}"
+  when: lxd_allow_remote  
+
+- name: set password for remote operations
+  command: "{{ lxd_lxc_path }} config set core.trust_password '{{ lxd_trust_password }}'"
+  when: lxd_allow_remote
+
 - name: list existing lxc images
   command: "lxc image list"
   changed_when: false

@@ -5,3 +5,5 @@ lxd_ubuntu_packages:
     - lxd
     - python-pip
     - python-lxc
+
+lxd_service_name: lxd

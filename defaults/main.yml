@@ -10,6 +10,10 @@ lxd_bridgeconf_ipv4_nat: true
 lxd_bridgeconf_ipv6_nat: false
 lxd_bridgeconf_ipv6_proxy: false
 
+lxd_allow_remote: false
+lxd_https_listen_address: "[::]"      # all interfaces on port 8443
+lxd_trust_password: "4trustlxd123" 
+
 lxd_preloadimages:
     - { i: 'images:/ubuntu/precise/amd64', alias: 'ubuntu-12.04' }
     - { i: 'images:/ubuntu/trusty/amd64',  alias: 'ubuntu-14.04' }
