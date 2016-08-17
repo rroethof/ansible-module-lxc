@@ -4,15 +4,15 @@
 - name: configure lxd bridge
   template: src=lxd-bridge.j2 dest=/etc/default/lxd-bridge mode=0644 backup=yes
   notify:
-    - restart lxd-bridge
     - reconfigure lxd
+    - restart lxd-bridge
   register: lxdconf
 
 - name: force restart of lxd to have working network
   service: name=lxd state=restarted
   notify:
-    - restart lxd-bridge
     - reconfigure lxd
+    - restart lxd-bridge
   when: lxdconf.changed and (ansible_virtualization_type is not defined or ansible_virtualization_type != "lxc")
 
 - name: allow remote operations
