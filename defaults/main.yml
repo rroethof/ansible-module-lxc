@@ -15,26 +15,25 @@ lxd_https_listen_address: "[::]"      # all interfaces on port 8443
 lxd_trust_password: "4trustlxd123" 
 
 lxd_preloadimages:
-    - { i: 'images:/ubuntu/precise/amd64', alias: 'ubuntu-12.04' }
-    - { i: 'images:/ubuntu/trusty/amd64',  alias: 'ubuntu-14.04' }
-    - { i: 'images:/ubuntu/xenial/amd64',  alias: 'ubuntu-16.04' }
-    - { i: 'images:/centos/6/amd64',       alias: 'centos-6' }
-    - { i: 'images:/centos/7/amd64',       alias: 'centos-7' }
-    - { i: 'images:/debian/wheezy/amd64',  alias: 'debian-7' }
-    - { i: 'images:/debian/jessie/amd64',  alias: 'debian-8' }
-    - { i: 'images:/alpine/3.0/amd64',     alias: 'alpine-3.0' }
-    - { i: 'images:/alpine/3.1/amd64',     alias: 'alpine-3.1' }
-    - { i: 'images:/alpine/3.2/amd64',     alias: 'alpine-3.2' }
-    - { i: 'images:/alpine/3.3/amd64',     alias: 'alpine-3.3' }
-    - { i: 'images:/alpine/3.4/amd64',     alias: 'alpine-3.4' }
-    - { i: 'images:/alpine/edge/amd64',    alias: 'alpine-edge' }
-    - { i: 'images:/fedora/22/amd64',      alias: 'fedora-22' }
-    - { i: 'images:/fedora/23/amd64',      alias: 'fedora-23' }
-    - { i: 'images:/fedora/24/amd64',      alias: 'fedora-24' }
-    - { i: 'images:/gentoo/current/amd64', alias: 'gentoo-current' }
-    - { i: 'images:/opensuse/13.2/amd64',  alias: 'opensuse-13.2' }
-    - { i: 'images:/oracle/6/amd64',       alias: 'oracle-6' }
-    - { i: 'images:/oracle/7/amd64',       alias: 'oracle-7' }
+    - { i: 'images:ubuntu/precise', alias: 'ubuntu-12.04' }
+    - { i: 'images:ubuntu/trusty',  alias: 'ubuntu-14.04' }
+    - { i: 'images:ubuntu/xenial',  alias: 'ubuntu-16.04' }
+    - { i: 'images:centos/6',       alias: 'centos-6' }
+    - { i: 'images:centos/7',       alias: 'centos-7' }
+    - { i: 'images:debian/wheezy',  alias: 'debian-7' }
+    - { i: 'images:debian/jessie',  alias: 'debian-8' }
+    - { i: 'images:alpine/3.1',     alias: 'alpine-3.1' }
+    - { i: 'images:alpine/3.2',     alias: 'alpine-3.2' }
+    - { i: 'images:alpine/3.3',     alias: 'alpine-3.3' }
+    - { i: 'images:alpine/3.4',     alias: 'alpine-3.4' }
+    - { i: 'images:alpine/edge',    alias: 'alpine-edge' }
+    - { i: 'images:fedora/22',      alias: 'fedora-22' }
+    - { i: 'images:fedora/23',      alias: 'fedora-23' }
+    - { i: 'images:fedora/24',      alias: 'fedora-24' }
+    - { i: 'images:gentoo/current', alias: 'gentoo-current' }
+    - { i: 'images:opensuse/13.2',  alias: 'opensuse-13.2' }
+    - { i: 'images:oracle/6',       alias: 'oracle-6' }
+    - { i: 'images:oracle/7',       alias: 'oracle-7' }
 
 lxd_preconfigure: 
   - { guest: 'demo-ubuntu-12', template: 'ubuntu-12.04' }
