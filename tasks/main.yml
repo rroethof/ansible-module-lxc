@@ -10,6 +10,15 @@
     - lxd-client
     - lxd-tools
 
+- name: create zfs file for lxd of 10GB
+  command: "truncate -s 10G /usr/lib/lxd/zfs.img"
+
+- name: create new zpool lxd
+  command: "zpool create lxd /usr/lib/lxd/zfs.img"
+
+- name: configure lxd to use zfs
+  command: "lxd init --storage-backend zfs --storage-pool lxd --auto"
+
 - name: configure lxd bridge
   template: src=lxd-bridge.j2 dest=/etc/default/lxd-bridge mode=0644 backup=yes
   notify:
