@@ -20,11 +20,11 @@
   when: zfsfile.stat.exists == False
 
 - name: create new zpool lxd
-  command: "zpool create lxd /usr/lib/lxd/zfs.img"
+  command: "zpool create {{ lxd_zfs_pool_name }} /usr/lib/lxd/zfs.img"
   when: zfsfile.stat.exists == False
 
 - name: configure lxd to use zfs
-  command: "lxd init --storage-backend zfs --storage-pool lxd --auto"
+  command: "lxd init --storage-backend zfs --storage-pool {{ lxd_zfs_pool_name }} --auto"
   when: zfsfile.stat.exists == False
 
 - name: configure lxd bridge

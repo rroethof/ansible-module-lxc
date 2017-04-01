@@ -26,8 +26,7 @@ Vagrant.configure(2) do |config|
       lxd_preconfigure:
         [ { guest: 'demo-ubuntu-14', template: 'ubuntu-14.04' },
           { guest: 'demo-debian-8', template: 'debian-8' } ],
-      update_kernel_if_required: true,
-      wait_for_reboot: 15,
+      lxd_zfs_pool_name: 'zpool',
     }
   end
 end
