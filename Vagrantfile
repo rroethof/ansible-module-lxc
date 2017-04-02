@@ -15,6 +15,9 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell",
     inline: "apt-get install -y python"
   
+  config.vm.provision "shell",
+    inline: "apt-get update && apt-get install -y zfsutils-linux && bash -c 'truncate -s 10G /usr/lib/lxd/zfs.img && zpool create zpool /usr/lib/lxd/zfs.img'"
+
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "tests/test.yml"
     ansible.sudo = true
