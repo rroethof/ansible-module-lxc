@@ -10,22 +10,30 @@
     - lxd-client
     - lxd-tools
 
-- name: verify if /usr/lib/lxd/zfs.img exists
-  stat:
-    path: /usr/lib/lxd/zfs.img
-  register: zfsfile
+- name: verify if ZFS pool exists
+  shell: zpool list {{ lxd_zfs_pool_name }}
+  register: zfspool
+  ignore_errors: true
+
+- name: print zfspool
+  debug: var=zfspool
 
 - name: create zfs file for lxd of 10GB
   command: "truncate -s 10G /usr/lib/lxd/zfs.img"
-  when: zfsfile.stat.exists == False
+  when: zfspool.rc != 0
 
-- name: create new zpool lxd
+- name: create new zpool for lxd
   command: "zpool create {{ lxd_zfs_pool_name }} /usr/lib/lxd/zfs.img"
-  when: zfsfile.stat.exists == False
+  when: zfspool.rc != 0
+
+- name: verify if lxd is configured to use ZFS
+  shell: lxc info | grep storage | grep zfs
+  register: lxcinfo
+  ignore_errors: true
 
 - name: configure lxd to use zfs
   command: "lxd init --storage-backend zfs --storage-pool {{ lxd_zfs_pool_name }} --auto"
-  when: zfsfile.stat.exists == False
+  when: lxcinfo.rc != 0
 
 - name: configure lxd bridge
   template: src=lxd-bridge.j2 dest=/etc/default/lxd-bridge mode=0644 backup=yes
