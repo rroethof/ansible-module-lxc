@@ -39,3 +39,5 @@ lxd_preconfigure:
   - { guest: 'demo-ubuntu-12', template: 'ubuntu-12.04' }
   - { guest: 'demo-ubuntu-14', template: 'ubuntu-14.04' }
   - { guest: 'demo-ubuntu-16', template: 'ubuntu-16.04' }
+
+lxd_zfs_pool_name: lxd
